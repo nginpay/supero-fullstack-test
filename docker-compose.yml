@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend-app
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 27017
+      DB_USERNAME: user
+      DB_PASSWORD: password
+      DB_DATABASE: database
+    depends_on:
+      - db
+    networks:
+      - app-network
+      
+  db:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: database
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
