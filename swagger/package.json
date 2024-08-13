@@ -1,0 +1,13 @@
+{
+  "name": "doc-sls",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node index",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0"
+  }
+}

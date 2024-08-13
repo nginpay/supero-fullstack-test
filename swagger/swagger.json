@@ -1,0 +1,397 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Documentação da API Supero-BackEnd",
+    "version": "1.0.0",
+    "title": "Supero Backend API",
+    "contact": {
+      "email": "p.tozzi2016@gmail.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "clients",
+      "description": "CRUD de clientes"
+    }
+  ],
+  "paths": {
+    "/clients/create": {
+      "post": {
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Cadastro de Clientes"
+          }
+        ],
+        "summary": "Inclusão de cliente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "dataContrato": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "valorContrato": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "situacaoContrato": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "nome",
+                  "cnpj",
+                  "dataContrato",
+                  "valorContrato",
+                  "situacaoContrato"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inclusão de Clientes bem sucedida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "dataContrato": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "valorContrato": {
+                      "type": "number",
+                      "format": "float"
+                    },
+                    "situacaoContrato": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "__v": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    },
+    "/clients/find-all": {
+      "get": {
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Listar todos os clientes e contratos"
+          }
+        ],
+        "summary": "Obter todos os clientes",
+        "responses": {
+          "200": {
+            "description": "Listagem de Clientes bem sucedida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "nome": {
+                        "type": "string"
+                      },
+                      "cnpj": {
+                        "type": "string"
+                      },
+                      "dataContrato": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "valorContrato": {
+                        "type": "number",
+                        "format": "float"
+                      },
+                      "situacaoContrato": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      "__v": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    },
+    "/clients/find/{id}": {
+      "get": {
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Busca cliente por ID"
+          }
+        ],
+        "summary": "Busca cliente por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do cliente a ser buscado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "dataContrato": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "valorContrato": {
+                      "type": "number",
+                      "format": "float"
+                    },
+                    "situacaoContrato": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "__v": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    },
+    "/clients/update/{id}": {
+      "patch": {
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Atualização parcial de um cliente"
+          }
+        ],
+        "summary": "Atualizar parcialmente um cliente pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do cliente a ser atualizado"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "cnpj": {
+                    "type": "string"
+                  },
+                  "dataContrato": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "valorContrato": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "situacaoContrato": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "nome": {
+                      "type": "string"
+                    },
+                    "cnpj": {
+                      "type": "string"
+                    },
+                    "dataContrato": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "valorContrato": {
+                      "type": "number",
+                      "format": "float"
+                    },
+                    "situacaoContrato": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "__v": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Cliente não encontrado"
+            }
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    },
+    "/clients/delete/{id}": {
+      "delete": {
+        "servers": [
+          {
+            "url": "http://localhost:3000",
+            "description": "Exclusão de um cliente"
+          }
+        ],
+        "summary": "Deletar um cliente pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID do cliente a ser deletado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente deletado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Cliente deletado com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cliente não encontrado"
+          }
+        },
+        "tags": [
+          "clients"
+        ]
+      }
+    }
+  }
+}

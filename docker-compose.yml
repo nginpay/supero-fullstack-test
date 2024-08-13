@@ -26,6 +26,17 @@ services:
     networks:
       - app-network
 
+  documents:
+    build: ./swagger
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    environment:
+      SWAGGER_BACKEND_URL: http://backend:3000
+    networks:
+      - app-network
+
   db:
     image: mongo
     environment:

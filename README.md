@@ -18,6 +18,13 @@ docker-compose up --build
 http://localhost:4200
 ```
 
+
+## Para ver a documentação (Swagger) da aplicação BackEnd em uma aplicação externa (swagger feito manualmente)
+```bash
+http://localhost:3001/api-docs/
+```
+
+
 ## Para ver a documentação (swagger) da aplicação gerada de forma automatizada pelo Swagger-UI
 ```bash
 http://localhost:3000/api
