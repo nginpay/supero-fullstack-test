@@ -1,0 +1,17 @@
+<div>
+    <label for="filter">Filtrar por status:</label>
+    <select id="filter" [formControl]="filter">
+        <option value="">Todos</option>
+        <option value="Em Atraso">Em Atraso</option>
+        <option value="Dentro do Prazo">Dentro do Prazo</option>
+        <option value="Pago">Pago</option>
+        <option value="Cancelado">Cancelado</option>
+    </select>
+</div>
+
+<ul>
+    <li *ngFor="let customer of customers">
+        {{ customer.name }} - {{ customer.status }}
+        <button (click)="cancelContract(customer.id)">Cancelar Contrato</button>
+    </li>
+</ul>

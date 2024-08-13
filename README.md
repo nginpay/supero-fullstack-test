@@ -13,6 +13,11 @@ git clone https://github.com/nginpay/supero.git
 docker-compose up --build
 ```
 
+## Para rodar a aplicação full
+```bash
+http://localhost:4200
+```
+
 ## Para ver a documentação (swagger) da aplicação gerada de forma automatizada pelo Swagger-UI
 ```bash
 http://localhost:3000/api
