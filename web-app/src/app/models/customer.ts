@@ -1,12 +1,13 @@
 export class Customer {
-  id!: number;
-  name!: string;
-  cpfCnpj!: string;
-  phone!: string;
-  contractNumber!: string;
-  contractDate!: Date;
-  contractValue!: number;
-  status!: 'Em Atraso' | 'Dentro do Prazo' | 'Pago' | 'Cancelado';
+  _id!: string;
+  nome!: string;
+  cnpj!: string;
+  dataContrato!: Date;
+  valorContrato!: number;
+  situacaoContrato!: string;
+  createdAt!: Date;
+  updatedAt!: Date;
+  id!: string;
 
   constructor(init?: Partial<Customer>) {
     Object.assign(this, init);

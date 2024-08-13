@@ -18,7 +18,7 @@ export class CustomerService {
   }
 
   private loadCustomers() {
-    this.http.get<Customer[]>(this.apiUrl+'/find-all').subscribe(customers => {
+    this.http.get<Customer[]>(this.apiUrl + '/find-all').subscribe(customers => {
       this.customersSubject.next(customers);
     });
   }
@@ -32,34 +32,34 @@ export class CustomerService {
     );
   }
 
-  updateCustomer(id: number, customer: Customer): Observable<Customer> {
+  updateCustomer(id: string, customer: Customer): Observable<Customer> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put<Customer>(url, customer).pipe(
       tap(updatedCustomer => {
         const updatedCustomers = this.customersSubject.value.map(c =>
-          c.id === id ? updatedCustomer : c
+          c._id === id ? updatedCustomer : c
         );
         this.customersSubject.next(updatedCustomers);
       })
     );
   }
 
-  removeCustomer(id: number): Observable<void> {
+  removeCustomer(id: string): Observable<void> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<void>(url).pipe(
       tap(() => {
-        const updatedCustomers = this.customersSubject.value.filter(c => c.id !== id);
+        const updatedCustomers = this.customersSubject.value.filter(c => c._id !== id);
         this.customersSubject.next(updatedCustomers);
       })
     );
   }
 
-  cancelContract(id: number): Observable<Customer> {
+  cancelContract(id: string): Observable<Customer> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.patch<Customer>(url, { status: 'Cancelado' }).pipe(
+    return this.http.patch<Customer>(url, { situacaoContrato: 'Cancelado' }).pipe(
       tap(updatedCustomer => {
         const updatedCustomers = this.customersSubject.value.map(c =>
-          c.id === id ? updatedCustomer : c
+          c._id === id ? updatedCustomer : c
         );
         this.customersSubject.next(updatedCustomers);
       })

@@ -1,17 +1,21 @@
-<div>
-    <label for="filter">Filtrar por status:</label>
-    <select id="filter" [formControl]="filter">
-        <option value="">Todos</option>
-        <option value="Em Atraso">Em Atraso</option>
-        <option value="Dentro do Prazo">Dentro do Prazo</option>
-        <option value="Pago">Pago</option>
-        <option value="Cancelado">Cancelado</option>
-    </select>
+<div class="container">
+    <h2>Lista de Clientes</h2>
+    <div class="filter-container">
+        <label for="filter">Filtrar por situação:</label>
+        <select id="filter" [formControl]="filter">
+            <option value="">Todos</option>
+            <option value="Dentro do Prazo">Dentro do Prazo</option>
+            <option value="Em Atraso">Em Atraso</option>
+            <option value="Pago">Pago</option>
+            <option value="Cancelado">Cancelado</option>
+        </select>
+    </div>
+    <button class="new-customer-button" (click)="navigateToNewCustomer()">Novo Cliente</button>
+    <ul>
+        <li *ngFor="let customer of customers" class="customer-item">
+            <span>{{ customer.nome }} - {{ customer.situacaoContrato }}</span>
+            <button class="cancel-button" (click)="cancelContract(customer._id)">Cancelar Contrato</button>
+            <button class="delete-button" (click)="deleteCustomer(customer._id)">Excluir</button>
+        </li>
+    </ul>
 </div>
-
-<ul>
-    <li *ngFor="let customer of customers">
-        {{ customer.name }} - {{ customer.status }}
-        <button (click)="cancelContract(customer.id)">Cancelar Contrato</button>
-    </li>
-</ul>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomerService } from '../services/customer.service';
+import { Router } from '@angular/router'; // Import Router for navigation
 
 @Component({
   selector: 'app-customer-form',
@@ -12,24 +13,25 @@ export class CustomerFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private router: Router // Inject Router
   ) {}
 
   ngOnInit(): void {
     this.customerForm = this.fb.group({
-      name: ['', Validators.required],
-      cpfCnpj: ['', Validators.required],
-      phone: ['', Validators.required],
-      contractNumber: ['', Validators.required],
-      contractDate: ['', Validators.required],
-      contractValue: ['', Validators.required],
-      status: ['Dentro do Prazo', Validators.required],
+      nome: ['', Validators.required],
+      cnpj: ['', Validators.required],
+      dataContrato: ['', Validators.required],
+      valorContrato: ['', Validators.required],
+      situacaoContrato: ['Dentro do Prazo', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.customerForm.valid) {
-      this.customerService.addCustomer(this.customerForm.value);
+      this.customerService.addCustomer(this.customerForm.value).subscribe(() => {
+        this.router.navigate(['/']); // Navigate back to the customer list
+      });
       this.customerForm.reset();
     }
   }
